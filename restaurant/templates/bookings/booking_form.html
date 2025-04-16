@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/booking_form.css' %}">
+    <script src="{% static 'js/booking_form.js' %}"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bookings</title>
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Pacinos</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="#">Deliveries</a>
+            <a href="#">TOS</a>
+            <a href="#">Contact</a>
+            <button class="btnLogin-popup">Login</button>
+        </nav>
+    </header>
+    <h1>Pacinos Booking</h1>
+    <form action="{% url 'booking_view' %}" method="post" onsubmit="validateForm(event)" id="bookingForm">
+        {% csrf_token %}
+        
+        <label for="name">Name:</label>
+        {{ form.name }} <br><br>
+    
+        <label for="phone">Phone Number:</label>
+        {{ form.phone }}
+        {% if form.phone.errors %}
+            <div class="error">{{ form.phone.errors.0 }}</div>
+        {% endif %}
+        <br><br>
+    
+        <label for="email">Email:</label>
+        {{ form.email }} <br><br>
+    
+        <label for="tableSize">Party Size:</label>
+        {{ form.table_size }} <br><br>
+    
+        <label for="kids">Will kids be dining with you?</label>
+        {{ form.kids }} <br><br>
+    
+        <label for="time">Preferred Time:</label>
+        {{ form.time }} <br><br>
+    
+        <label for="date">Preferred Date:</label>
+        {{ form.date }} 
+        {% if form.date.errors %}
+            <div class="error">{{ form.date.errors.0 }}</div>
+        <br>{% endif %}<br>
+
+        <label for="special_requests">Special Requests:</label>
+        {{ form.special_requests }} <br><br>
+
+        <input type="submit" value="Reserve Table" id="submitBtn" class="submit-btn">
+    </form>
+</body>
+</html>

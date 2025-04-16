@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+{%load static%}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deleted Bookings</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/deleted_log.css' %}">
+
+</head>
+<body>
+    {% include 'staffpanel/sidebar.html' %}
+    <h1>Deleted Bookings Log</h1><br>
+    <table>
+        <thead>
+            <tr>
+                <th>Customer Name</th>
+                <th>Email</th>
+                <th>Phone</th>
+                <th>Date</th>
+                <th>Time</th>
+                <th>Table Size</th>
+                <th>Kids</th>
+                <th>Special Requests</th>
+                <th>Deleted At</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for log in logs %}
+                <tr>
+                    <td>{{ log.customer.name }}</td>
+                    <td>{{ log.customer.email }}</td>
+                    <td>{{ log.customer.phone }}</td>
+                    <td>{{ log.date }}</td>
+                    <td>{{ log.time }}</td>
+                    <td>{{ log.table_size }}</td>
+                    <td>{{ log.kids|yesno:"Yes,No" }}</td>
+                    <td>{{ log.special_requests }}</td>
+                    <td>{{ log.deleted_at }}</td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="10" class="no-data">No deleted bookings yet.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>

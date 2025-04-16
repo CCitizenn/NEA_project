@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static 'css/register.css' %}">
+
+</head>
+
+<body>
+    <div class="form-container">
+        <div class="form">
+            <h3>Pacinos Register Account</h3>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Register</button>
+            </form>
+            <br>
+            <a href="{% url 'main:index' %}" class="home-button">Back to Home</a>
+        </div>
+    </div>
+
+</body>
+</html>

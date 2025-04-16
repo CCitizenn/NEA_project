@@ -1,0 +1,20 @@
+{% block content %}
+<h2>Your Upcoming Bookings</h2>
+
+{% if bookings %}
+    <ul>
+        {% for booking in bookings %}
+            <li>
+                <strong>Date:</strong> {{ booking.date }}<br>
+                <strong>Time:</strong> {{ booking.time }}<br>
+                <strong>Guests:</strong> {{ booking.guest_count }}<br>
+                <strong>Notes:</strong> {{ booking.notes }}
+            </li>
+            <hr>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no upcoming bookings.</p>
+{% endif %}
+
+{% endblock %}

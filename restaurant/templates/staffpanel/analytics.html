@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+<head>
+    <title>Booking Analytics</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        h1 { margin-bottom: 10px; }
+        table { border-collapse: collapse; width: 50%; margin-bottom: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: left; }
+        th { background-color: #f4f4f4; }
+    </style>
+</head>
+<body>
+    {% include 'staffpanel/sidebar.html' %}
+    <h1>Analytics ({{ start_week }} to {{ end_week }})</h1>
+
+    <h2>Total bookings this week: {{ total_weekly }}</h2>
+    <h2>Average bookings per day: {{ avg_per_day }}</h2>
+
+    <h3>Bookings by Day of Week</h3>
+    <table>
+        <tr>
+            <th>Day</th>
+            <th>Number of Bookings</th>
+        </tr>
+        {% for entry in daily_counts %}
+        <tr>
+            <td>{{ entry.day_of_week }}</td>
+            <td>{{ entry.total }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <h3>Peak Booking Times</h3>
+    <table>
+        {% for peak_time in peak_times %}
+            <p>Time: {{ peak_time.formatted_time }} - Bookings: {{ peak_time.count }}</p>
+        {% endfor %}
+    </table>
+</body>
+</html>

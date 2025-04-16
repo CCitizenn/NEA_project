@@ -1,0 +1,21 @@
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'css/login.css' %}">
+
+<div class="login">
+    <div class="form">
+        <h3>Pacinos Login</h3>
+        <form method="POST" class="login-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+
+        {% if error %}
+            <p style="color: red;">{{ error }}</p>
+        {% endif %}
+
+        <p><a href="{% url 'login:register' %}">Register</a></p>
+        <a href="{% url 'main:index' %}" class="home-button">Back to Home</a>
+    </div>
+</div>
+

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Staff Panel</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/staff_panel.css' %}">
+    <script src="{% static 'js/staff_panel.js' %}"></script>
+</head>
+
+<body>
+{% include 'staffpanel/sidebar.html' %}
+
+<div class="controls">
+    <button type="button" onclick="changeDate(-1)">←</button>
+    <input type="date" id="datePicker" value="{{ selected_date|default:'' }}" onchange="updateDate()">
+    <button type="button" onclick="changeDate(1)">→</button>
+    <button type="button" onclick="window.location.href='?date={{ today_date }}'">Today</button>
+    <button type="button" onclick="window.location.href='?upcoming=true'">Upcoming Bookings</button>
+
+    <label for="sort">Sort by:</label>
+    <select name="sort" id="sort" onchange="sortBookings()">
+        <option value="" {% if not sort_by %}selected{% endif %}>Default</option>
+        <option value="time" {% if sort_by == 'time' %}selected{% endif %}>Time</option>
+        <option value="date" {% if sort_by == 'date' %}selected{% endif %}>Date</option>
+        <option value="name" {% if sort_by == 'name' %}selected{% endif %}>Name</option>
+    </select>
+</div>
+
+<table border="1">
+    <thead>
+        <tr>
+            <th>Booking ID</th>
+            <th>Customer Name</th>
+            <th>Date</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for booking in bookings %}
+        <tr class="{% if booking.completed %}completed{% endif %}" onclick="showDetails(
+            '{{ booking.id }}', 
+            '{{ booking.customer.name }}', 
+            '{{ booking.customer.email }}', 
+            '{{ booking.customer.phone }}', 
+            '{{ booking.date }}', 
+            '{{ booking.time }}', 
+            '{{ booking.table_size }}', 
+            '{{ booking.special_requests|default:"-" }}',
+            '{{ booking.completed|yesno:"true,false" }}'
+        )" style="cursor: pointer;">
+            <td>{{ booking.id }}</td>
+            <td>{{ booking.customer.name }}</td>
+            <td>{{ booking.date }}</td>
+            <td>{{ booking.time }}</td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">No bookings for {{ selected_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<!-- popout sidebar templated -->
+<div id="detailsSidebar" class="details-sidebar">
+    <span class="close-btn" onclick="closeDetails()">×</span>
+    <div class="details-content">
+        <h2>Booking Details</h2>
+        <p><strong>Name:</strong> <span id="detailName"></span></p>
+        <p><strong>Table Size:</strong> <span id="detailTableSize"></span></p>
+        <p><strong>Email:</strong> <span id="detailEmail"></span></p>
+        <p><strong>Phone:</strong> <span id="detailPhone"></span></p>
+        <p><strong>Date:</strong> <span id="detailDate"></span></p>
+        <p><strong>Time:</strong> <span id="detailTime"></span></p>
+        <p><strong>Special Requests:</strong> <span id="detailRequests"></span></p>
+        <p><strong>ID:</strong> <span id="detailId"></span></p>
+        <form id="completeForm" method="post">
+          {% csrf_token %}
+          <button type="submit" id="completeBtn" >
+              Mark as Completed
+          </button>
+        </form><br>
+        <form id="deleteForm" method="post" onsubmit="return confirm('Are you sure you want to delete this booking?');">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-danger">
+              Delete Booking
+          </button>
+        </form><br>
+        <form method="get" id="editForm">
+          <button type="submit" class="btn btn-primary">Edit Booking</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

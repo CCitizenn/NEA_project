@@ -1,0 +1,15 @@
+<!--staff popout navigation bar-->
+{% load static %}
+<button class=".btnPopout" onclick="toggleSidebar()">☰</button>
+<link rel="stylesheet" type="text/css" href="{% static 'css/sidebar.css' %}">
+<script src="{% static 'js/sidebar.js' %}"></script>
+
+<div id="staffSidebar" class="sidebar">
+    <a href="{% url 'staffpanel:staff_panel' %}">Staffpanel Home</a>
+    <a href="{% url 'staffpanel:deleted_log' %}">Deleted bookings logs</a>
+    <a href="{% url 'staffpanel:staff_analytics' %}">Analytics</a>
+    <a href="{% url 'main:index' %}">Homepage</a>
+    <a href="{% url 'login:logout' %}">Logout</a>
+</div>
+
+<div id="overlay" class="overlay" onclick="toggleSidebar()"></div>

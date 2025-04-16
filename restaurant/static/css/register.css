@@ -1,0 +1,107 @@
+@import url(https://fonts.googleapis.com/css?family=Lato:300);
+
+
+body {
+    background: #3d3d3d; 
+    font-family: "Lato", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* login container */
+.form-container {
+    width: 500px;
+    padding: 5% 0;
+    margin: auto;
+}
+
+.form {
+    position: relative;
+    z-index: 1;
+    background: #FFFFFF;
+    max-width: 360px;
+    margin: 0 auto 50px;
+    padding: 45px;
+    text-align: center;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+    border-radius: 8px;
+}
+
+.form h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #262725;
+}
+
+/* Input Fields */
+.form input {
+    font-family: "Lato", sans-serif;
+    outline: 0;
+    background: #e7e4e4;
+    width: 100%;
+    border: 0;
+    margin: 0 0 15px;
+    padding: 15px;
+    box-sizing: border-box;
+    font-size: 14px;
+    border-radius: 5px;
+}
+
+/* submit */
+.form button {
+    font-family: "Lato", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #262725;
+    width: 100%;
+    border: 0;
+    padding: 15px;
+    color: #FFFFFF;
+    font-size: 14px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.form button:hover,
+.form button:active,
+.form button:focus {
+    background: #3d3d3d;
+}
+
+.register-link {
+    margin-top: 15px;
+    font-size: 14px;
+    color: #262725;
+}
+
+.register-link a {
+    color: #ff5733;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.register-link a:hover {
+    text-decoration: underline;
+}
+.home-button {
+    display: block;
+    text-align: center;
+    margin-top: 15px;
+    padding: 12px;
+    background: #ff5733;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    font-family: "Lato", sans-serif;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+}
+
+.home-button:hover {
+    background: #e64a19;
+}

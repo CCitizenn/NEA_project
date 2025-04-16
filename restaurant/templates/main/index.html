@@ -1,0 +1,50 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"> 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pacinos</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <script src="{% static 'js/index.js' %}"></script>
+    <style> 
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background: url("{% static 'img/background.jpg' %}") no-repeat;
+            background-size: cover;
+            background-position: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <header>
+        <h2 class="logo">Pacinos</h2>
+        <nav class="navigation">
+            <a href="#">Home</a>
+            <a href="{% url 'staffpanel:staff_panel' %}">Staff</a>
+            <a href="https://www.just-eat.co.uk/restaurants-pacinos-south-shields/menu#pre-order" target="_blank">Deliveries</a>
+            <a href="/login">Login</a>
+            <a href="/my-bookings" >View Bookings</a>
+        </nav>
+    </header>
+
+    <div class="middle">
+        <div class="center-buttons" >
+            <a href="/book" target="_blank" class="redirect-button">Bookings</a>
+            <br>
+            <a href="#" target="_blank" class="redirect-button">Menu</a>
+        </div>
+    </div>
+    <script src="{% static 'main/script.js' %}"></script>
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+    <footer>© Copyright 2025 Liam Golzar</footer>
+</body>
+
+</html>
