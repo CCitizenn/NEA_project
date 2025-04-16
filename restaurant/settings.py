@@ -122,8 +122,8 @@ USE_TZ = True
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend' #this prints the email to the console for local development
 EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587 # Standard SMTPS (smtp secure) port
-EMAIL_HOST_USER = 'liamx75@gmail.com' 
-EMAIL_HOST_PASSWORD = 'zrgz dmzp ncmd fuej' # (google app password)
+EMAIL_HOST_USER = 'HIDDEN' 
+EMAIL_HOST_PASSWORD = 'HIDDEN' # (google app password)
 EMAIL_USE_TLS = True # Transport Layer Security protocol to connect to SMTP server
 EMAIL_USE_SSL = False 
 ##########################################
